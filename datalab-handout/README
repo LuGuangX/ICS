@@ -91,7 +91,7 @@ Here are the command line options for btest:
     -r <n>    Give uniform weight of n for all problems
     -T <lim>  Set timeout limit to lim
 
-Examples:
+examples:
 
   Test all functions for correctness and print out error messages:
   unix> ./btest

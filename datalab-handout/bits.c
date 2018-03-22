@@ -139,7 +139,10 @@ NOTES:
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
-  return 2;
+	x=~x;
+	y=~y;
+	x=x|y;
+	return ~x;
 }
 /* 
  * getByte - Extract byte n from word x
@@ -150,14 +153,15 @@ int bitAnd(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
+    int y=0x000000FF;
+    n=n<<3;
+    y=y<<n;
+    x=y&x;
+    x=x>>n;
+    return x&0xFF;
 
 
 
-
-
-
-
-  return 2;
 
 }
 /* 
@@ -169,7 +173,18 @@ int getByte(int x, int n) {
  *   Rating: 3 
  */
 int logicalShift(int x, int n) {
-  return 2;
+    int y=0x7F;
+    int z=0xFF;
+    y=(y<<8)+z;
+    x=x>>n;
+    y=(y<<8)+z;
+    y=(y<<8)+z;
+    y=(y<<(((!!n)&1)^1))+((!n)&1);
+    y=y>>n;
+    y=(y<<1)+1;
+    x=x&y;
+
+  return x;
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -189,6 +204,7 @@ int bitCount(int x) {
  *   Rating: 4 
  */
 int bang(int x) {
+  
   return 2;
 }
 /* 
@@ -198,7 +214,9 @@ int bang(int x) {
  *   Rating: 1
  */
 int tmin(void) {
-  return 2;
+    int x=0x1;
+    x=x<<31;
+  return x;
 }
 /* 
  * fitsBits - return 1 if x can be represented as an 
