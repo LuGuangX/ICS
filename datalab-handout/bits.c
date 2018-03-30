@@ -194,6 +194,7 @@ int logicalShift(int x, int n) {
  *   Rating: 4
  */
 int bitCount(int x) {
+
   return 2;
 }
 /* 
@@ -239,7 +240,14 @@ int fitsBits(int x, int n) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+    int z =!x;
+    int y;
+    int h =x>>31;
+    h=h&1;
+    h=h^(!z);
+    y=((1^h)<<n)-(1^h);
+    x=(x+y)>>n;
+    return x;
 }
 /* 
  * negate - return -x 
@@ -249,7 +257,8 @@ int divpwr2(int x, int n) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+    x= ~x+1;
+  return x;
 }
 /* 
  * isPositive - return 1 if x > 0, return 0 otherwise 
@@ -259,7 +268,11 @@ int negate(int x) {
  *   Rating: 3
  */
 int isPositive(int x) {
-  return 2;
+    int n = !x;
+    x=x>>31;
+    x=x&0x1;
+    x=x^(!n);
+  return x;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
